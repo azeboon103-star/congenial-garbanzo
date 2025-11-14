@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدفع - عالم الصفحات</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>عالم الصفحات</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">الرئيسية</a></li>
+                    <li><a href="cart.html">السلة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="payment">
+        <div class="container">
+            <h2>معلومات الدفع</h2>
+            <div id="payment-method">
+                <button id="wallet-btn" class="btn active">محفظة إلكترونية</button>
+                <button id="instapay-btn" class="btn">دفع بـ Instapay</button>
+            </div>
+            <form id="payment-form">
+                <div id="wallet-fields">
+                    <input type="text" id="wallet-number" placeholder="رقم الهاتف المرتبط بالمحفظة" required>
+                </div>
+                <div id="instapay-fields" style="display: none;">
+                    <input type="text" id="instapay-number" placeholder="رقم الهاتف المرتبط بـ Instapay" required>
+                </div>
+
+                <div class="payment-proof" style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; border: 2px dashed #ddd;">
+                    <h4 style="margin-bottom: 10px; color: #333;">إثبات الدفع (مطلوب)</h4>
+                    <p style="font-size: 14px; color: #666; margin-bottom: 15px;">
+                        يرجى رفع صورة إيصال الدفع أو لقطة شاشة تثبت إتمام عملية الدفع للموافقة عليها
+                    </p>
+                    <input type="file" id="payment-proof" accept="image/*" required style="margin-bottom: 10px;">
+                    <div id="file-preview" style="margin-top: 10px;"></div>
+                </div>
+
+                <button type="submit" class="btn">إرسال طلب الدفع للموافقة</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="../js/payment.js"></script>
+</body>
+</html>

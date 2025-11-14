@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم الصفحات - متجر الكتب الإلكتروني</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>عالم الصفحات</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#categories">الفئات</a></li>
+                    <li><a href="#bestsellers">الأكثر مبيعًا</a></li>
+                    <li><a href="pages/blog.html">المدونة</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="search-cart">
+                <input type="text" placeholder="البحث عن كتاب..." id="search">
+                <button id="search-btn">بحث</button>
+                <div class="cart">
+                    <span id="cart-count">0</span>
+                    <a href="pages/cart.html">السلة</a>
+                </div>
+                <div id="user-info">
+                    <a href="pages/login.html">دخول</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="banner">
+        <div class="container">
+            <h2>اكتشف عالم الكتب معنا</h2>
+            <p>تجربة قراءة فاخرة وسهلة</p>
+            <a href="#categories" class="btn">تصفح الكتب</a>
+        </div>
+    </section>
+
+    <section id="categories">
+        <div class="container">
+            <h2>فئات الكتب</h2>
+            <div class="category-grid">
+                <a href="?category=روايات" class="category">
+                    <h3>روايات</h3>
+                    <p>قصص مشوقة ومغامرات</p>
+                </a>
+                <a href="?category=تطوير ذاتي" class="category">
+                    <h3>تطوير ذاتي</h3>
+                    <p>كتب لتحسين الذات</p>
+                </a>
+                <a href="?category=تعليم" class="category">
+                    <h3>تعليم</h3>
+                    <p>كتب تعليمية وأكاديمية</p>
+                </a>
+                <a href="?category=أطفال" class="category">
+                    <h3>أطفال</h3>
+                    <p>كتب ممتعة للأطفال</p>
+                </a>
+                <a href="?category=دينية" class="category">
+                    <h3>دينية</h3>
+                    <p>كتب دينية وروحية</p>
+                </a>
+                <a href="?category=أجنبية" class="category">
+                    <h3>أجنبية</h3>
+                    <p>كتب مترجمة من اللغات الأخرى</p>
+                </a>
+                <a href="?" class="category">
+                    <h3>جميع الكتب</h3>
+                    <p>عرض جميع الكتب</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="bestsellers">
+        <div class="container">
+            <h2>الكتب الأكثر مبيعًا</h2>
+            <div class="book-grid">
+                <!-- الكتب ستُعرض هنا ديناميكيًا -->
+            </div>
+        </div>
+    </section>
+
+    <section id="recommendations">
+        <div class="container">
+            <h2>التوصيات</h2>
+            <div class="book-grid">
+                <!-- كتب موصى بها -->
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <div class="container">
+            <h2>آراء العملاء</h2>
+            <div class="review">
+                <p>"موقع رائع وخدمة ممتازة!"</p>
+                <cite>- عميل سعيد</cite>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 عالم الصفحات. جميع الحقوق محفوظة.</p>
+            <div class="social">
+                <a href="#">فيسبوك</a>
+                <a href="#">تويتر</a>
+                <a href="#">إنستغرام</a>
+            </div>
+            <div class="admin-link" style="margin-top: 10px; font-size: 12px;">
+                <a href="pages/admin-login.html">دخول الأدمن</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- أداة الدردشة -->
+    <div id="chat-widget">
+        <button id="chat-toggle">💬 دردشة</button>
+        <div id="chat-window" style="display: none;">
+            <div id="chat-messages"></div>
+            <input type="text" id="chat-input" placeholder="اكتب رسالتك...">
+            <button id="chat-send">إرسال</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

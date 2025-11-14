@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تم الدفع بنجاح - عالم الصفحات</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .success-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 60px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .payment-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: right;
+        }
+        .qr-code {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+        }
+        .reference-number {
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        <h1>تم الدفع بنجاح!</h1>
+        <p>شكرًا لشرائك من عالم الصفحات</p>
+
+        <div class="payment-details">
+            <h3>تفاصيل الدفع</h3>
+            <p><strong>طريقة الدفع:</strong> <span id="payment-method"></span></p>
+            <p><strong>المبلغ الإجمالي:</strong> <span id="total-amount"></span> جنيه</p>
+            <p><strong>رقم المرجع:</strong></p>
+            <div class="reference-number" id="reference-number"></div>
+            <p><strong>تاريخ الدفع:</strong> <span id="payment-date"></span></p>
+            <p><strong>النقاط المكتسبة:</strong> <span id="points-earned"></span> نقطة</p>
+        </div>
+
+        <div class="qr-code">
+            <h4>رمز الدفع (QR Code)</h4>
+            <div id="qr-code-container">
+                <!-- QR Code will be generated here -->
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2QzYzNjMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5EZW1vIFFSIENvZGU8L3RleHQ+Cjwvc3ZnPg==" alt="QR Code" style="width: 150px; height: 150px; border: 1px solid #ddd;">
+            </div>
+            <p style="font-size: 12px; color: #666; margin-top: 10px;">
+                احتفظ بهذا الرمز كإثبات على الدفع
+            </p>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <button onclick="window.location.href='../index.html'" class="btn" style="margin-left: 10px;">العودة للرئيسية</button>
+            <button onclick="window.print()" class="btn">طباعة الإيصال</button>
+        </div>
+    </div>
+
+    <script>
+        // استرجاع بيانات الدفع من localStorage
+        const paymentData = JSON.parse(localStorage.getItem('paymentSuccess') || '{}');
+
+        if (paymentData.referenceNumber) {
+            document.getElementById('payment-method').textContent = paymentData.methodName;
+            document.getElementById('total-amount').textContent = paymentData.total;
+            document.getElementById('reference-number').textContent = paymentData.referenceNumber;
+            document.getElementById('payment-date').textContent = new Date().toLocaleString('ar');
+            document.getElementById('points-earned').textContent = paymentData.pointsEarned;
+
+            // إنشاء QR Code بسيط باستخدام رقم المرجع
+            generateQRCode(paymentData.referenceNumber);
+        } else {
+            // إذا لم توجد بيانات، إعادة التوجيه
+            window.location.href = '../index.html';
+        }
+
+        function generateQRCode(text) {
+            // محاكاة إنشاء QR Code بسيط
+            const qrContainer = document.getElementById('qr-code-container');
+            qrContainer.innerHTML = `
+                <div style="width: 150px; height: 150px; border: 1px solid #ddd; background: #f8f9fa; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 10px; color: #333;">
+                    QR CODE<br>${text}<br>DEMO
+                </div>
+            `;
+        }
+
+        // تنظيف البيانات بعد عرضها
+        setTimeout(() => {
+            localStorage.removeItem('paymentSuccess');
+        }, 5000);
+    </script>
+</body>
+</html>

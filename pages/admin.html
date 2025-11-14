@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - عالم الصفحات</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>لوحة التحكم</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">العودة للموقع</a></li>
+                    <li id="admin-info"></li>
+                    <li><a href="#" onclick="showChangePassword()">تغيير كلمة المرور</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="admin">
+        <div class="container">
+            <div id="change-password" style="display: none; margin-bottom: 20px;">
+                <h3>تغيير كلمة المرور</h3>
+                <form id="change-password-form">
+                    <input type="password" id="old-password" placeholder="كلمة المرور القديمة" required>
+                    <input type="password" id="new-password-change" placeholder="كلمة المرور الجديدة" required>
+                    <button type="submit" class="btn">تغيير</button>
+                </form>
+            </div>
+            <h2>إدارة الكتب</h2>
+            <form id="add-book-form">
+                <input type="text" id="title" placeholder="عنوان الكتاب" required>
+                <input type="text" id="author" placeholder="المؤلف" required>
+                <select id="category" required>
+                    <option value="">اختر الفئة</option>
+                    <option value="روايات">روايات</option>
+                    <option value="تطوير ذاتي">تطوير ذاتي</option>
+                    <option value="تعليم">تعليم</option>
+                    <option value="أطفال">أطفال</option>
+                    <option value="دينية">دينية</option>
+                    <option value="أجنبية">أجنبية</option>
+                </select>
+                <input type="number" id="price" placeholder="السعر" required>
+                <textarea id="description" placeholder="الوصف"></textarea>
+                <input type="file" id="image" accept="image/*">
+                <input type="file" id="pdf" accept=".pdf">
+                <input type="file" id="word" accept=".doc,.docx">
+                <input type="file" id="epub" accept=".epub">
+                <button type="submit" class="btn">إضافة الكتاب</button>
+            </form>
+            <div id="book-list">
+                <!-- قائمة الكتب -->
+            </div>
+            <h2>إدارة آراء العملاء</h2>
+            <form id="add-review-form">
+                <input type="text" id="review-text" placeholder="نص الرأي" required>
+                <input type="text" id="review-author" placeholder="اسم العميل" required>
+                <button type="submit" class="btn">إضافة الرأي</button>
+            </form>
+            <div id="review-list">
+                <!-- قائمة الآراء -->
+            </div>
+            <h2>حركة البيع</h2>
+            <div id="orders-list">
+                <!-- قائمة الطلبات -->
+            </div>
+
+            <h2>الطلبات المعلقة للموافقة</h2>
+            <div id="pending-orders-list">
+                <!-- قائمة الطلبات المعلقة -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        if (!localStorage.getItem('currentAdmin')) {
+            window.location.href = 'admin-login.html';
+        } else {
+            const admin = JSON.parse(localStorage.getItem('currentAdmin'));
+            document.getElementById('admin-info').textContent = 'مرحبا ' + admin.username;
+        }
+    </script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

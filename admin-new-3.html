@@ -1,0 +1,106 @@
+                                <div class="form-group">
+                                    <label for="smtp-host">مضيف SMTP</label>
+                                    <input type="text" id="smtp-host" class="form-control" placeholder="smtp.example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="smtp-port">منفذ SMTP</label>
+                                    <input type="number" id="smtp-port" class="form-control" placeholder="587">
+                                </div>
+                                <div class="form-group">
+                                    <label for="smtp-username">اسم المستخدم</label>
+                                    <input type="text" id="smtp-username" class="form-control" placeholder="user@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="smtp-password">كلمة المرور</label>
+                                    <input type="password" id="smtp-password" class="form-control" placeholder="كلمة المرور">
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="smtp-ssl" checked>
+                                        استخدام SSL/TLS
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn">حفظ الإعدادات</button>
+                                <button type="button" class="btn" onclick="testEmailSettings()">اختبار الإعدادات</button>
+                            </form>
+                        </div>
+
+                        <div id="security-setting" class="setting-content">
+                            <h3>إعدادات الأمان</h3>
+                            <form id="security-settings-form">
+                                <div class="form-group">
+                                    <label for="admin-username">اسم مستخدم الأدمن</label>
+                                    <input type="text" id="admin-username" class="form-control" placeholder="admin">
+                                </div>
+                                <div class="form-group">
+                                    <label for="admin-email">بريد الأدمن الإلكتروني</label>
+                                    <input type="email" id="admin-email" class="form-control" placeholder="admin@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="session-timeout">مدة الجلسة (دقائق)</label>
+                                    <input type="number" id="session-timeout" class="form-control" min="5" value="30">
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="enable-captcha" checked>
+                                        تفعيل التحقق من الإنسان (CAPTCHA)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="enable-backup" checked>
+                                        تفعيل النسخ الاحتياطي التلقائي
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="backup-frequency">تكرار النسخ الاحتياطي</label>
+                                    <select id="backup-frequency" class="form-control">
+                                        <option value="daily">يومياً</option>
+                                        <option value="weekly">أسبوعياً</option>
+                                        <option value="monthly">شهرياً</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn">حفظ الإعدادات</button>
+                                <button type="button" class="btn" onclick="createBackup()">إنشاء نسخة احتياطية الآن</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // التحقق من تسجيل دخول الأدمن
+        if (!localStorage.getItem('currentAdmin')) {
+            window.location.href = 'admin-login.html';
+            return;
+        }
+
+        const admin = JSON.parse(localStorage.getItem('currentAdmin'));
+
+        // إعداد لوحة التحكم
+        setupDashboard(admin);
+
+        // عرض البيانات الأولية
+        displayBooks();
+        displayUsers();
+        displayOrders();
+        displayReviews();
+        displayStats();
+
+        // إعداد تبويب القائمة الجانبية
+        setupMenuTabs();
+
+        // إعداد زر تبديل القائمة الجانبية
+        setupSidebarToggle();
+
+        // إعداد تبويب الإعدادات
+        setupSettingsTabs();
+
+        // تحميل الإعدادات المحفوظة
+        loadSettings();
+    </script>
+    <script src="admin-new.js"></script>
+</body>
+</html>

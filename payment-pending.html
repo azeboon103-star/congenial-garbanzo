@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب الدفع معلق - عالم الصفحات</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .pending-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .pending-icon {
+            font-size: 60px;
+            color: #ffc107;
+            margin-bottom: 20px;
+        }
+        .pending-details {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: right;
+            border: 1px solid #ffeaa7;
+        }
+        .reference-number {
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: bold;
+            color: #856404;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="pending-container">
+        <div class="pending-icon">⏳</div>
+        <h1>طلب الدفع معلق للموافقة</h1>
+        <p>تم إرسال طلب الدفع الخاص بك بنجاح وهو الآن في انتظار الموافقة من الإدارة</p>
+
+        <div class="pending-details">
+            <h3>تفاصيل الطلب</h3>
+            <p><strong>طريقة الدفع:</strong> <span id="payment-method"></span></p>
+            <p><strong>المبلغ الإجمالي:</strong> <span id="total-amount"></span> جنيه</p>
+            <p><strong>رقم المرجع:</strong></p>
+            <div class="reference-number" id="reference-number"></div>
+            <p><strong>تاريخ الطلب:</strong> <span id="request-date"></span></p>
+            <p><strong>حالة الطلب:</strong> <span style="color: #ffc107; font-weight: bold;">معلق للموافقة</span></p>
+        </div>
+
+        <div style="background: #e9ecef; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h4>ما يحدث الآن؟</h4>
+            <ul style="text-align: right; padding-right: 20px;">
+                <li>سيتم مراجعة إثبات الدفع الخاص بك من قبل الإدارة</li>
+                <li>ستتلقى إشعارًا عند الموافقة على الطلب</li>
+                <li>سيتم إكمال الطلب وإضافة النقاط للحساب الخاص بك</li>
+                <li>يمكنك متابعة حالة الطلب من خلال حسابك الشخصي</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <button onclick="window.location.href='../index.html'" class="btn" style="margin-left: 10px;">العودة للرئيسية</button>
+            <button onclick="checkStatus()" class="btn">تحقق من الحالة</button>
+        </div>
+    </div>
+
+    <script>
+        // استرجاع بيانات الطلب المعلق
+        const pendingData = JSON.parse(localStorage.getItem('pendingPayment') || '{}');
+
+        if (pendingData.referenceNumber) {
+            document.getElementById('payment-method').textContent = pendingData.methodName;
+            document.getElementById('total-amount').textContent = pendingData.total;
+            document.getElementById('reference-number').textContent = pendingData.referenceNumber;
+            document.getElementById('request-date').textContent = new Date().toLocaleString('ar');
+        } else {
+            // إذا لم توجد بيانات، إعادة التوجيه
+            window.location.href = '../index.html';
+        }
+
+        function checkStatus() {
+            // محاكاة فحص الحالة - في الواقع سيتم التحقق من الخادم
+            alert('حالة الطلب: معلق للموافقة. سيتم إشعارك عند الموافقة.');
+        }
+
+        // تنظيف البيانات بعد عرضها
+        setTimeout(() => {
+            localStorage.removeItem('pendingPayment');
+        }, 10000);
+    </script>
+</body>
+</html>

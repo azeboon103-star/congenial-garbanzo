@@ -1,0 +1,397 @@
+                        <div class="stat-value" id="users-count">0</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orders">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-title">إجمالي الطلبات</div>
+                                <div class="stat-value" id="orders-count">0</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon revenue">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-title">إجمالي الإيرادات</div>
+                                <div class="stat-value" id="revenue-count">0 ر.س</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>المبيعات الشهرية</h3>
+                        <canvas id="sales-chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- إدارة الكتب -->
+                <div id="books-tab" class="tab-content">
+                    <div class="admin-content">
+                        <h2>إدارة الكتب</h2>
+                        <form id="add-book-form">
+                            <div class="form-group">
+                                <label for="book-title">عنوان الكتاب</label>
+                                <input type="text" id="book-title" class="form-control" placeholder="عنوان الكتاب" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="book-author">المؤلف</label>
+                                <input type="text" id="book-author" class="form-control" placeholder="المؤلف" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="book-category">الفئة</label>
+                                <select id="book-category" class="form-control" required>
+                                    <option value="">اختر الفئة</option>
+                                    <option value="روايات">روايات</option>
+                                    <option value="تطوير ذاتي">تطوير ذاتي</option>
+                                    <option value="تعليم">تعليم</option>
+                                    <option value="أطفال">أطفال</option>
+                                    <option value="دينية">دينية</option>
+                                    <option value="أجنبية">أجنبية</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="book-price">السعر</label>
+                                <input type="number" id="book-price" class="form-control" placeholder="السعر" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="book-description">الوصف</label>
+                                <textarea id="book-description" class="form-control" placeholder="الوصف" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn">إضافة الكتاب</button>
+                        </form>
+
+                        <h3>قائمة الكتب</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>المعرف</th>
+                                    <th>العنوان</th>
+                                    <th>المؤلف</th>
+                                    <th>الفئة</th>
+                                    <th>السعر</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="books-list">
+                                <!-- سيتم عرض الكتب هنا -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- إدارة المستخدمين -->
+                <div id="users-tab" class="tab-content">
+                    <div class="admin-content">
+                        <h2>إدارة المستخدمين</h2>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>المعرف</th>
+                                    <th>الاسم</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>النقاط</th>
+                                    <th>تاريخ التسجيل</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-list">
+                                <!-- سيتم عرض المستخدمين هنا -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- إدارة الطلبات -->
+                <div id="orders-tab" class="tab-content">
+                    <div class="admin-content">
+                        <h2>إدارة الطلبات</h2>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>رقم الطلب</th>
+                                    <th>العميل</th>
+                                    <th>عدد العناصر</th>
+                                    <th>المجموع</th>
+                                    <th>التاريخ</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-list">
+                                <!-- سيتم عرض الطلبات هنا -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- إدارة الآراء -->
+                <div id="reviews-tab" class="tab-content">
+                    <div class="admin-content">
+                        <h2>إدارة آراء العملاء</h2>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>الرأي</th>
+                                    <th>العميل</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reviews-list">
+                                <!-- سيتم عرض الآراء هنا -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- التحليلات -->
+                <div id="analytics-tab" class="tab-content">
+                    <div class="admin-content">
+                        <h2>التحليلات</h2>
+                        <div class="tabs">
+                            <div class="tab active" data-chart="sales">المبيعات</div>
+                            <div class="tab" data-chart="categories">الفئات الأكثر مبيعًا</div>
+                            <div class="tab" data-chart="users">نمو المستخدمين</div>
+                        </div>
+
+                        <div class="chart-container">
+                            <canvas id="analytics-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الإعدادات -->
+                <div id="settings-tab" class="tab-content">
+                    <div class="admin-content">
+                        <h2>إعدادات الموقع</h2>
+                        <div class="tabs">
+                            <div class="tab active" data-setting="general">عام</div>
+                            <div class="tab" data-setting="payment">الدفع</div>
+                            <div class="tab" data-setting="email">البريد الإلكتروني</div>
+                            <div class="tab" data-setting="security">الأمان</div>
+                        </div>
+
+                        <div id="general-setting" class="setting-content active">
+                            <h3>الإعدادات العامة</h3>
+                            <form id="general-settings-form">
+                                <div class="form-group">
+                                    <label for="site-name">اسم الموقع</label>
+                                    <input type="text" id="site-name" class="form-control" value="عالم الصفحات">
+                                </div>
+                                <div class="form-group">
+                                    <label for="site-description">وصف الموقع</label>
+                                    <textarea id="site-description" class="form-control" rows="3">متجر الكتب الإلكتروني الأول في المملكة</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="site-logo">شعار الموقع</label>
+                                    <input type="file" id="site-logo" class="form-control">
+                                </div>
+                                <button type="submit" class="btn">حفظ الإعدادات</button>
+                            </form>
+                        </div>
+
+                        <div id="payment-setting" class="setting-content">
+                            <h3>إعدادات الدفع</h3>
+                            <form id="payment-settings-form">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="payment-cod" checked>
+                                        الدفع عند الاستلام (COD)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="payment-card" checked>
+                                        بطاقات الائتمان
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="payment-paypal" checked>
+                                        باي بال
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn">حفظ الإعدادات</button>
+                            </form>
+                        </div>
+
+                        <div id="email-setting" class="setting-content">
+                            <h3>إعدادات البريد الإلكتروني</h3>
+                            <form id="email-settings-form">
+                                <div class="form-group">
+                                    <label for="smtp-host">مضيف SMTP</label>
+                                    <input type="text" id="smtp-host" class="form-control" placeholder="smtp.example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="smtp-port">المنفذ</label>
+                                    <input type="number" id="smtp-port" class="form-control" placeholder="587">
+                                </div>
+                                <div class="form-group">
+                                    <label for="smtp-username">اسم المستخدم</label>
+                                    <input type="text" id="smtp-username" class="form-control" placeholder="user@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="smtp-password">كلمة المرور</label>
+                                    <input type="password" id="smtp-password" class="form-control">
+                                </div>
+                                <button type="submit" class="btn">حفظ الإعدادات</button>
+                                <button type="button" class="btn" id="test-email">اختبار الإعدادات</button>
+                            </form>
+                        </div>
+
+                        <div id="security-setting" class="setting-content">
+                            <h3>إعدادات الأمان</h3>
+                            <form id="security-settings-form">
+                                <div class="form-group">
+                                    <label for="session-timeout">انتهاء الجلسة (بالدقائق)</label>
+                                    <input type="number" id="session-timeout" class="form-control" value="30" min="5" max="120">
+                                </div>
+                                <div class="form-group">
+                                    <label for="max-login-attempts">الحد الأقصى لمحاولات الدخول</label>
+                                    <input type="number" id="max-login-attempts" class="form-control" value="5" min="3" max="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lockout-duration">مدة الحظر (بالدقائق)</label>
+                                    <input type="number" id="lockout-duration" class="form-control" value="15" min="5" max="60">
+                                </div>
+                                <button type="submit" class="btn">حفظ الإعدادات</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تسجيل الخروج
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('currentAdmin');
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        // إعداد تبويب الإعدادات
+        document.addEventListener('DOMContentLoaded', function() {
+            const settingTabs = document.querySelectorAll('[data-setting]');
+            const settingContents = document.querySelectorAll('.setting-content');
+
+            settingTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const settingName = this.getAttribute('data-setting');
+
+                    // إزالة الكلاس النشط من جميع العناصر
+                    settingTabs.forEach(t => t.classList.remove('active'));
+                    settingContents.forEach(sc => sc.classList.remove('active'));
+
+                    // إضافة الكلاس النشط للعنصر المحدد
+                    this.classList.add('active');
+
+                    // إظهار المحتوى المناسب
+                    const targetSetting = document.getElementById(`${settingName}-setting`);
+                    if (targetSetting) {
+                        targetSetting.classList.add('active');
+                    }
+                });
+            });
+
+            // إعداد تبويب التحليلات
+            const analyticsTabs = document.querySelectorAll('[data-chart]');
+            analyticsTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const chartType = this.getAttribute('data-chart');
+
+                    // إزالة الكلاس النشط من جميع العناصر
+                    analyticsTabs.forEach(t => t.classList.remove('active'));
+
+                    // إضافة الكلاس النشط للعنصر المحدد
+                    this.classList.add('active');
+
+                    // تحديث الرسم البياني
+                    updateAnalyticsChart(chartType);
+                });
+            });
+        });
+
+        // تحديث الرسم البياني للتحليلات
+        function updateAnalyticsChart(type) {
+            const ctx = document.getElementById('analytics-chart');
+            if (!ctx) return;
+
+            let chartData = {};
+            let chartLabel = '';
+            let chartType = 'bar';
+
+            switch(type) {
+                case 'sales':
+                    // تجميع المبيعات حسب الشهر
+                    chartData = {};
+                    orders.forEach(order => {
+                        const month = new Date(order.date).toLocaleDateString('ar', { month: 'short' });
+                        if (!chartData[month]) {
+                            chartData[month] = 0;
+                        }
+                        chartData[month] += order.total;
+                    });
+                    chartLabel = 'المبيعات الشهرية (ر.س)';
+                    break;
+
+                case 'categories':
+                    // تجميع المبيعات حسب الفئة
+                    chartData = {};
+                    books.forEach(book => {
+                        if (!chartData[book.category]) {
+                            chartData[book.category] = 0;
+                        }
+                        chartData[book.category]++;
+                    });
+                    chartLabel = 'الكتب حسب الفئة';
+                    break;
+
+                case 'users':
+                    // تجميع المستخدمين حسب الشهر
+                    chartData = {};
+                    users.forEach(user => {
+                        const month = new Date(user.registeredAt).toLocaleDateString('ar', { month: 'short' });
+                        if (!chartData[month]) {
+                            chartData[month] = 0;
+                        }
+                        chartData[month]++;
+                    });
+                    chartLabel = 'المستخدمين الجدد شهرياً';
+                    chartType = 'line';
+                    break;
+            }
+
+            // تدمير الرسم البياني الحالي
+            if (window.analyticsChart) {
+                window.analyticsChart.destroy();
+            }
+
+            // إنشاء رسم بياني جديد
+            window.analyticsChart = new Chart(ctx, {
+                type: chartType,
+                data: {
+                    labels: Object.keys(chartData),
+                    datasets: [{
+                        label: chartLabel,
+                        data: Object.values(chartData),
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 2,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+    </script>
+    <script src="../js/admin-new.js"></script>
+</body>
+</html>
